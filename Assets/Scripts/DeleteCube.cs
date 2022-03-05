@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerCube : MonoBehaviour
+public class DeleteCube : MonoBehaviour
 {
     public float damage = 10f;
 
