@@ -8,14 +8,15 @@ public class PlayerUI : MonoBehaviour
 {
     public TextMeshProUGUI livesText;
     private int livesLeft = 1;
-    public RawImage livesImage;
+    public Image livesImage;
+    public Sprite deadImage;
+    public Sprite aliveImage;
 
-    public Texture2D deadImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        livesImage.GetComponent<Image>().sprite = aliveImage; 
     }
 
     // Update is called once per frame
@@ -38,6 +39,11 @@ public class PlayerUI : MonoBehaviour
         livesLeft++;
 
         livesText.text = "X " + livesLeft.ToString();
+
+        if (livesLeft > 0)
+        {
+            livesImage.GetComponent<Image>().sprite = aliveImage;
+        }
     }
 
     public void DecreaseLives()
@@ -49,7 +55,7 @@ public class PlayerUI : MonoBehaviour
         // if the player is out of lives, then change the image to dead face
         if (livesLeft <= 0)
         {
-            livesImage.texture = deadImage;
+            livesImage.GetComponent<Image>().sprite = deadImage;
 
             Debug.Log("You Died");
         }

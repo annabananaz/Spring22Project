@@ -19,7 +19,7 @@ public class CoffeeBean : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         // When the player collides with the coffee bean the bean adds to bean counter in the GameManager and then deletes itself
-        if (collision.collider == player)
+        if (collision.collider.tag == "Player")
         {
             //gameManager.GetComponent<GameManager>().coffeebeans++;
             Destroy(gameObject);
