@@ -30,9 +30,9 @@ public class CameraController : MonoBehaviour
 
         Rotate();
         // take the current location, the destination, and the time you want for the camera to reach the target destination
-        transform.position = Vector3.Lerp(transform.position, (target.position + offset), .125f);
+        // transform.position = Vector3.Lerp(transform.position, (target.position + offset), .125f);
 
-        //transform.position = target.position + offset;
+        transform.position = target.position + offset;
 
         transform.LookAt(target.position);
     }
@@ -40,5 +40,6 @@ public class CameraController : MonoBehaviour
     void Rotate()
     {
         offset = Quaternion.AngleAxis(Input.GetAxis("CameraVertical"), Vector3.up) * offset;
+        offset.Set(offset.x, 2f, offset.z);
     }
 }

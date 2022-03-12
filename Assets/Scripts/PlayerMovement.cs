@@ -7,7 +7,10 @@ public class PlayerMovement : MonoBehaviour
 
     //public variables that can be altered in editor.
     public float moveSpeed = 1f;
-    public float jumpForce = 1f;
+    public float jumpForce = 7f;
+    public float fallSpeed = 0.01f;
+    public float maxFallSpeed = -3f;
+    public bool doubleJump = true;
 
     //private variables we will use to determine things
     private bool onGround;
@@ -33,6 +36,19 @@ public class PlayerMovement : MonoBehaviour
         rbody.velocity = new Vector3(x, rbody.velocity.y, z);
 
 
+        //if (rbody.velocity.y < maxFallSpeed) {
+        //    rbody.velocity = new Vector3(x, maxFallSpeed, z);
+        //}
+        
+        if (rbody.velocity.y < 0)
+        {
+            rbody.drag = -3f;
+        }
+        else {
+            rbody.drag = 2f;
+        }
+
+
         //alter the direction the character looks
         Vector3 lookdirection = rbody.velocity;
         lookdirection.y = 0;
@@ -46,10 +62,13 @@ public class PlayerMovement : MonoBehaviour
         //if Space bar is pressed, then jump
         //the method used here is alright for things like this, but if the player
         //holds down space bar nothing will happen
-        if(Input.GetKeyDown(KeyCode.Space) && onGround == true)
+        if(Input.GetKeyDown(KeyCode.Space) && (onGround == true || doubleJump == true))
         {
             //instant jolt of energy that pushes player up
             rbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (onGround == false) {
+                doubleJump = false;
+            }
         }
 
         //Raytracing to detect if we are on the ground 
@@ -74,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(standingRay, out hit, castDistance))
         {
             onGround = true;
+            doubleJump = true;
         }
         else
         {
