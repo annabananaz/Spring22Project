@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,unity,csharp,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,unity,csharp,macos
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,unity,macos,windows,csharp
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,unity,macos,windows,csharp
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -493,6 +493,21 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+### VisualStudioCode ###
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# Support for Project snippet scope
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -514,4 +529,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,unity,csharp,macos
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,unity,macos,windows,csharp
