@@ -9,37 +9,52 @@ public class CameraController : MonoBehaviour
 
     public Transform target;
 
+    public Transform camTransform;
+
+    private Camera cam;
+
+    private float distance = 10.0f; 
+    private float currentX = 0f;
+
+    private float currentY = 0f;
+
+    private float sensivityX = 4.0f;
+    private float sensivityY = 1.0f;
+
+    private const float Y_Angle_MIN = 0f;
+    private const float Y_Angle_MAX = 50f;
+
     public Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
+        camTransform = transform;
+        cam = Camera.main;
+
         transform.position = target.position + offset;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // // pitch
-        // float y = Input.GetAxis("CameraVertical");
-        // // pan
-        // float z = Input.GetAxis("CameraHorizontal");
 
-        // transform.Rotate(0f, y, z);
+        currentX += Input.GetAxis("CameraHorizontal");
+        currentY += Input.GetAxis("CameraVertical");
 
+        currentY = Mathf.Clamp(currentY, Y_Angle_MIN, Y_Angle_MAX);
 
-        Rotate();
-        // take the current location, the destination, and the time you want for the camera to reach the target destination
-        // transform.position = Vector3.Lerp(transform.position, (target.position + offset), .125f);
-
-        transform.position = target.position + offset;
-
-        transform.LookAt(target.position);
     }
 
-    void Rotate()
+    //called after player moves
+    private void LateUpdate()
     {
-        offset = Quaternion.AngleAxis(Input.GetAxis("CameraVertical"), Vector3.up) * offset;
-        offset.Set(offset.x, 2f, offset.z);
+        Vector3 dir = new Vector3(0, 0,-distance);
+        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+        camTransform.position = target.position + rotation * dir;
+
+        //look at player
+        camTransform.LookAt(target.position);
     }
+
 }
