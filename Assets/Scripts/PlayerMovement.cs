@@ -33,7 +33,9 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
         //set the rigibody's velocity
-        rbody.velocity = new Vector3(x, rbody.velocity.y, z);
+        Vector3 targetDirection = new Vector3(x, 0f, z);
+        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
+        rbody.velocity = new Vector3(targetDirection.x, rbody.velocity.y, targetDirection.z);
 
 
         //if (rbody.velocity.y < maxFallSpeed) {
