@@ -21,8 +21,8 @@ public class CameraController : MonoBehaviour
     private float sensivityX = 4.0f;
     private float sensivityY = 1.0f;
 
-    private const float Y_Angle_MIN = 0f;
-    private const float Y_Angle_MAX = 50f;
+    private const float Y_Angle_MIN = -30f;
+    private const float Y_Angle_MAX = 80f;
 
     public Vector3 offset;
 
@@ -38,9 +38,11 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         currentX += Input.GetAxis("CameraHorizontal");
         currentY += Input.GetAxis("CameraVertical");
+
+        currentX += Input.GetAxis("Mouse X") * sensivityX;
+        currentY += Input.GetAxis("Mouse Y") * sensivityY;
 
         currentY = Mathf.Clamp(currentY, Y_Angle_MIN, Y_Angle_MAX);
 

@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    // everything related to lives.
     public TextMeshProUGUI livesText;
     private int livesLeft = 1;
     public Image livesImage;
     public Sprite deadImage;
     public Sprite aliveImage;
 
+    public TextMeshProUGUI beansText;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /**/
         //testing lives
         if (Input.GetKeyDown("p"))
         {
@@ -31,8 +34,9 @@ public class PlayerUI : MonoBehaviour
         {
             IncreaseLives();
         }
+        
     }
-
+    /**/
     //functions to alter the lives on the UI.
     public void IncreaseLives()
     {
@@ -59,5 +63,23 @@ public class PlayerUI : MonoBehaviour
 
             Debug.Log("You Died");
         }
+    }
+    
+    
+    //alters the lives
+    public void UpdateLives(int num)
+    {
+        if (num <= 0)
+        {
+            livesImage.GetComponent<Image>().sprite = deadImage;
+        }
+
+        livesText.text = "X " + num.ToString();
+    }
+
+    //alters the beans
+    public void UpdateBeans(int num)
+    {
+        beansText.text = "X " + num.ToString();
     }
 }
