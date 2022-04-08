@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void changeBeans(int num)
+    public void ChangeBeans(int num)
     {
         beans += num;
         playerUI.UpdateBeans(beans);
     }
 
-    void changeLives(int num)
+    public void ChangeLives(int num)
     {
         lives += num;
         playerUI.UpdateLives(lives);
