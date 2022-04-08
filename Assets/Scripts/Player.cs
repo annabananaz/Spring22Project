@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
+    // Player movement ------------------------------------
     //public variables that can be altered in editor.
     public float moveSpeed = 1f;
     public float jumpForce = 7f;
@@ -16,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private bool onGround;
     private Rigidbody rbody;
 
-
+    // Game Manager
+    public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +35,16 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
         //set the rigibody's velocity
-        rbody.velocity = new Vector3(x, rbody.velocity.y, z);
+        Vector3 targetDirection = new Vector3(x, 0f, z);
+        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
+        rbody.velocity = new Vector3(targetDirection.x, rbody.velocity.y, targetDirection.z);
 
 
         //if (rbody.velocity.y < maxFallSpeed) {
         //    rbody.velocity = new Vector3(x, maxFallSpeed, z);
         //}
         
+        // Alter the drag of the character when jumping/falling
         if (rbody.velocity.y < 0)
         {
             rbody.drag = -3f;
@@ -99,6 +104,12 @@ public class PlayerMovement : MonoBehaviour
         {
             onGround = false;
         }
-
     }
+
+    //player dies
+    public void PlayerDied()
+    {
+        
+    }
+
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoffeeBean : MonoBehaviour {
-    public GameObject player;
     //public GameObject gameManager;
     // Start is called before the first frame update
     void Start()
@@ -17,11 +16,16 @@ public class CoffeeBean : MonoBehaviour {
         
     }
 
-    void OnCollisionEnter(Collision collision) {
+    void OnTriggerEnter(Collider collider) {
+
+        Debug.Log("Test");
         // When the player collides with the coffee bean the bean adds to bean counter in the GameManager and then deletes itself
-        if (collision.collider == player)
+        if (collider.gameObject.tag == "Player")
         {
-            //gameManager.GetComponent<GameManager>().coffeebeans++;
+            var manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            manager.ChangeBeans(1);
+
+
             Destroy(gameObject);
         }
     }
