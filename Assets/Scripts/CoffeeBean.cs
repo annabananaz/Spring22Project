@@ -5,6 +5,8 @@ using UnityEngine;
 public class CoffeeBean : MonoBehaviour {
     //public GameObject gameManager;
     // Start is called before the first frame update
+    public float rotationSpd;
+
     void Start()
     {
         
@@ -13,7 +15,7 @@ public class CoffeeBean : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0f, 0f, rotationSpd);
     }
 
     void OnTriggerEnter(Collider collider) {
@@ -24,7 +26,6 @@ public class CoffeeBean : MonoBehaviour {
         {
             var manager = GameObject.Find("GameManager").GetComponent<GameManager>();
             manager.ChangeBeans(1);
-
 
             Destroy(gameObject);
         }
