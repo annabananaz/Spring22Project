@@ -15,7 +15,7 @@ public class CoffeeBean : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0f, 0f, rotationSpd);
+        transform.Rotate(0f, rotationSpd, 0f);
     }
 
     void OnTriggerEnter(Collider collider) {
