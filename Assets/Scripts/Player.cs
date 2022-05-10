@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     // Game Manager
     public GameManager gameManager;
+    public GameObject Camera;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
 
         //set the rigibody's velocity
         Vector3 targetDirection = new Vector3(x, 0f, z);
-        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
+        targetDirection = Camera.transform.TransformDirection(targetDirection);
         rbody.velocity = new Vector3(targetDirection.x, rbody.velocity.y, targetDirection.z);
 
 
