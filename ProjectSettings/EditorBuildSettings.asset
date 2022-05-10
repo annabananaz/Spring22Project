@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Civets Island.unity
+    guid: 52d865f38d54fdd468bd4b0a18e20351
   m_configObjects: {}
